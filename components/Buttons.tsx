@@ -7,7 +7,6 @@ import Link from "next/link";
 export function SignInButton() {
   // Retrieve the current user session from the client side
   const { data: session, status } = useSession();
-  console.log(session, status);
 
   if (status === "loading") return <>Loading...</>;
 
