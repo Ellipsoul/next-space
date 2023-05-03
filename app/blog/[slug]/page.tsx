@@ -9,6 +9,16 @@ interface Post {
   slug: string;
 }
 
+// Special function to pre-fetch data that does not change often
+export async function generateStaticParams() {
+  const postsResponse: Response = await fetch(
+    "http://localhost:3000/api/content",
+    { cache: "default" } // Contorl caching at the fetch level here
+  );
+  const posts: Post[] = await postsResponse.json();
+  return posts.map((post) => ({ slug: post.slug }));
+}
+
 // Access the dynamic route from params
 interface Props {
   params: { slug: string };
@@ -16,9 +26,10 @@ interface Props {
 
 export default async function BlogPostPage({ params }: Props) {
   // Call the API endpoint. Full absolute endpoint required
+  // This request is automatically de-duped because of the above identical request
   const postsResponse: Response = await fetch(
     "http://localhost:3000/api/content",
-    { cache: "default" } // Contorl caching at the fetch level here
+    { cache: "default" }
   );
   const posts: Post[] = await postsResponse.json();
 
