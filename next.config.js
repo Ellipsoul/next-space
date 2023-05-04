@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
+
+import { setDefaultResultOrder } from "dns";
+setDefaultResultOrder("ipv4first");
+
 const nextConfig = {
   experimental: {
     appDir: true,
@@ -15,4 +19,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
