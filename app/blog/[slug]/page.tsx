@@ -12,7 +12,7 @@ export interface Post {
 // Special function to pre-fetch data that does not change often
 export async function generateStaticParams() {
   const postsResponse: Response = await fetch(
-    "http://localhost:3000/api/content",
+    "http://127.0.0.1:3000/api/content",
     { cache: "default" } // Contorl caching at the fetch level here
   );
   const posts: Post[] = await postsResponse.json();
@@ -28,7 +28,7 @@ export default async function BlogPostPage({ params }: Props) {
   // Call the API endpoint. Full absolute endpoint required
   // This request is automatically de-duped because of the above identical request
   const postsResponse: Response = await fetch(
-    "http://localhost:3000/api/content",
+    "http://127.0.0.1:3000/api/content",
     { cache: "default" }
   );
   const posts: Post[] = await postsResponse.json();
