@@ -3,7 +3,7 @@ import React from "react";
 // Revalidate the data after 300 seconds
 export const revalidate = 300;
 
-interface Post {
+export interface Post {
   title: string;
   content: string;
   slug: string;
